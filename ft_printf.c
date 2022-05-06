@@ -6,58 +6,62 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 14:07:09 by gkehren           #+#    #+#             */
-/*   Updated: 2022/04/24 14:52:21 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/05/05 16:36:09 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_arg(char c)
+int	ft_print_arg(va_list params, char c)
 {
-	/*if (c == 'c')
-		ft_print_char(); // Affiche le caractère
-	if (c == 's')
-		ft_print_str(); // Affiche la string
-	if (c == 'p')
-		ft_print_addr(); // Affiche *void en hexa
-	if (c == 'd')
-		ft_print_dec(); // Affiche un décimal
-	if (c == 'i')
-		ft_print_int(); // Affiche un entier
-	if (c == 'u')
-		ft_print_unsigned(); // Affiche un unsigned
-	if (c == 'x')
-		ft_print_hex(0); // Affiche un nombre en hexa minuscule
-	if (c == 'X')
-		ft_print_hex(1); // Affiche un nombre en hexa majuscule*/
 	if (c == '%')
-		write(1, &"%", 1); // Affiche un %
+		ft_print_char('%');
+	if (c == 's')
+		ft_print_str((char *)va_arg(params, char *));
+	if (c == 'c')
+		ft_print_char(va_arg(params, int));
+	if (c == 'p')
+		ft_print_addr((unsigned long)va_arg(params, void *), "0123456789abcdef");
+	if (c == 'd')
+		ft_print_nbr(va_arg(params, int));
+	if (c == 'i')
+		ft_print_nbr_base(va_arg(params, int), "0123456789");
+	if (c == 'u')
+		ft_print_nbr_base(va_arg(params, int), "0123456789");
+	if (c == 'x')
+		ft_print_nbr_base(va_arg(params, int), "0123456789abcdef");
+	if (c == 'X')
+		ft_print_nbr_base(va_arg(params, int), "0123456789ABCDEF");
 	return (0);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	int	i;
+	va_list params;
 
 	i = 0;
+	va_start(params, str);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
 		{
-			ft_print_arg(str[i + 1]);
+			ft_print_arg(params, str[i + 1]);
 			i += 2;
 		}
-		write(1, &str[i], 1);
+		ft_print_char(str[i]);
 		i++;
 	}
+	write(1, 0, 1);
+	va_end(params);
 	return (0);
 }
 
 #include <stdio.h>
 int	main()
 {
-	ft_printf("nombre: %d", 3);
-	printf("\n");
-	printf("nombre: %d", 3);
+	char p[10];
+	ft_printf("car: %c, number: %d, string: %s, addr: %p\n", 'x', 42, "String", p);
+	printf("car: %c, number: %d, string: %s, addr: %p", 'x', 42, "String", p);
 	return (0);
 }
