@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 14:07:21 by gkehren           #+#    #+#             */
-/*   Updated: 2022/05/07 15:08:16 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/05/07 18:05:25 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@
 # include <stdarg.h>
 # include <stdlib.h>
 
-void	ft_print_char(char c);
-void	ft_print_nbr(int nb);
-void	ft_print_str(char *str);
-void	ft_addr(unsigned long long nb, char *base);
-void	ft_print_nbr_base(int nbr, char *base);
+int	ft_print_char(char c);
+int	ft_print_str(char *str);
+int	ft_print_nbr(int nb);
+int	ft_print_nbr_u(unsigned int n);
+int	ft_addr(unsigned long n, char *base);
+int	ft_print_nbr_base(unsigned int n, char *base);
+int	ft_printf(const char *str, ...);
 
 #endif

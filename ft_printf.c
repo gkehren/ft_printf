@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 14:07:09 by gkehren           #+#    #+#             */
-/*   Updated: 2022/05/07 15:06:49 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/05/07 17:47:23 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,55 +14,59 @@
 
 int	ft_print_arg(va_list params, char c)
 {
+	int		len;
+
+	len = 0;
 	if (c == '%')
-		ft_print_char('%');
+		len += ft_print_char('%');
 	if (c == 's')
-		ft_print_str((char *)va_arg(params, char *));
+		len += ft_print_str((char *)va_arg(params, char *));
 	if (c == 'c')
-		ft_print_char(va_arg(params, int));
+		len += ft_print_char(va_arg(params, int));
 	if (c == 'p')
-		ft_addr((unsigned long)va_arg(params, void *), "0123456789abcdef");
+		len += ft_addr((unsigned long)va_arg(params, void *), "0123456789abcdef");
 	if (c == 'd')
-		ft_print_nbr(va_arg(params, int));
+		len += ft_print_nbr(va_arg(params, int));
 	if (c == 'i')
-		ft_print_nbr_base(va_arg(params, int), "0123456789");
+		len += ft_print_nbr(va_arg(params, int));
 	if (c == 'u')
-		ft_print_nbr_base(va_arg(params, int), "0123456789");
+		len += ft_print_nbr_u(va_arg(params, int));
 	if (c == 'x')
-		ft_print_nbr_base(va_arg(params, int), "0123456789abcdef");
+		len += ft_print_nbr_base(va_arg(params, int), "0123456789abcdef");
 	if (c == 'X')
-		ft_print_nbr_base(va_arg(params, int), "0123456789ABCDEF");
-	return (0);
+		len += ft_print_nbr_base(va_arg(params, int), "0123456789ABCDEF");
+	return (len);
 }
 
 int	ft_printf(const char *str, ...)
 {
 	int		i;
+	int		len;
 	va_list	params;
 
 	i = 0;
+	len = 0;
 	va_start(params, str);
 	while (str[i] != '\0')
 	{
 		if (str[i] == '%')
 		{
-			ft_print_arg(params, str[i + 1]);
-			i += 2;
+			len += ft_print_arg(params, str[i + 1]);
+			i++;
 		}
-		ft_print_char(str[i]);
+		else
+			len += write(1, &str[i], 1);
 		i++;
 	}
-	write(1, 0, 1);
 	va_end(params);
-	return (0);
+	return (len);
 }
 /*
 #include <stdio.h>
 int	main()
 {
-	char p[10];
-	ft_printf("car: %c, number: %d, string: %s, addr: %p\n", 'x', 42, "String", p);
-	printf("car: %c, number: %d, string: %s, addr: %p", 'x', 42, "String", p);
+	//printf(" %p %p ", (void *)0, (void *)0);
+	ft_printf("%i", 0);
 	return (0);
 }
 */
