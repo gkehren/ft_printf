@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 14:07:09 by gkehren           #+#    #+#             */
-/*   Updated: 2022/05/05 16:36:09 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/05/07 15:06:49 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_print_arg(va_list params, char c)
 	if (c == 'c')
 		ft_print_char(va_arg(params, int));
 	if (c == 'p')
-		ft_print_addr((unsigned long)va_arg(params, void *), "0123456789abcdef");
+		ft_addr((unsigned long)va_arg(params, void *), "0123456789abcdef");
 	if (c == 'd')
 		ft_print_nbr(va_arg(params, int));
 	if (c == 'i')
@@ -37,8 +37,8 @@ int	ft_print_arg(va_list params, char c)
 
 int	ft_printf(const char *str, ...)
 {
-	int	i;
-	va_list params;
+	int		i;
+	va_list	params;
 
 	i = 0;
 	va_start(params, str);
@@ -56,7 +56,7 @@ int	ft_printf(const char *str, ...)
 	va_end(params);
 	return (0);
 }
-
+/*
 #include <stdio.h>
 int	main()
 {
@@ -65,3 +65,4 @@ int	main()
 	printf("car: %c, number: %d, string: %s, addr: %p", 'x', 42, "String", p);
 	return (0);
 }
+*/

@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 12:23:00 by gkehren           #+#    #+#             */
-/*   Updated: 2022/05/05 16:35:44 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/05/07 15:06:14 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_print_addr(unsigned long long nb, char *base)
+void	ft_addr(unsigned long long nb, char *base)
 {
 	unsigned long	result;
 	unsigned long	diviseur;
