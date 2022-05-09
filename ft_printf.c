@@ -6,7 +6,7 @@
 /*   By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/24 14:07:09 by gkehren           #+#    #+#             */
-/*   Updated: 2022/05/07 17:47:23 by gkehren          ###   ########.fr       */
+/*   Updated: 2022/05/09 14:18:28 by gkehren          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_print_arg(va_list params, char c)
 	if (c == 'c')
 		len += ft_print_char(va_arg(params, int));
 	if (c == 'p')
-		len += ft_addr((unsigned long)va_arg(params, void *), "0123456789abcdef");
+		len += ft_addr((unsigned long)va_arg(params, void *));
 	if (c == 'd')
 		len += ft_print_nbr(va_arg(params, int));
 	if (c == 'i')
@@ -61,12 +61,3 @@ int	ft_printf(const char *str, ...)
 	va_end(params);
 	return (len);
 }
-/*
-#include <stdio.h>
-int	main()
-{
-	//printf(" %p %p ", (void *)0, (void *)0);
-	ft_printf("%i", 0);
-	return (0);
-}
-*/
