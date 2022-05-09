@@ -6,11 +6,11 @@
 #    By: gkehren <gkehren@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/07 15:16:00 by gkehren           #+#    #+#              #
-#    Updated: 2022/05/07 15:48:07 by gkehren          ###   ########.fr        #
+#    Updated: 2022/05/09 14:22:07 by gkehren          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRCS			=	ft_printf.c ft_printf_utils.c
+SRCS			=	ft_printf.c ft_printf_utils.c ft_printf_other.c
 
 OBJS			= ${SRCS:.c=.o}
 
